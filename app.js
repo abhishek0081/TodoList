@@ -10,7 +10,7 @@ const port = 3000;
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(express.static('public'));
+app.use(express.static('Public'));
 app.set('view engine','ejs');
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.SECRET_KEY}@${process.env.DB_CLUSTER}.${process.env.DB_AD}.${process.env.DB_NET}/${process.env.DB_DB}`, {useNewUrlParser:true,useUnifiedTopology: true});
