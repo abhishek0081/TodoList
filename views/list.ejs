@@ -1,0 +1,47 @@
+<%- include("header") -%>
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">ToDoList</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/work">Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/About">Contact Us</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+    <div class="box" id="heading">
+        <h1 ><%= listTitle  %></h1>
+    </div>
+<div class="box">
+        <%newListItems.forEach(item=>{%>
+          <form action="/delete" method="post">
+        <div class="item">
+            <input type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= item._id %>" >
+        <p><%= item['name'] %></p>
+    </div>
+    <input type="hidden" name="listName" value="<%= listTitle%>"></input>
+  </form>
+    <%})%>
+    <form action="/" method="post" class="item">
+        <input type="text" name="newItem" id="" placeholder="New Item">
+        <button class="button" type="submit" name="submit" value=<%= listTitle %> >+</button>
+    </form>
+</div> 
+<!-- <div class=" box wrap"></div> -->
+
+    <%- include("footer") -%>
