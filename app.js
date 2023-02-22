@@ -126,11 +126,28 @@ app.get("/:topic",(req,res)=>{
 
 })
 
-// app.post("/:topic",(req,res)=>{
-//     const item = req.body.newItem;
-//     workItems.push(item);
-//     res.redirect("/work")
-// })
+app.post("/search",(req,res)=>{
+    const findItem = _.capitalize(req.body.searchValue);
+    List.findOne({name:findItem},(err,result)=>{
+        if (!err) {
+            if (result ===  null) {
+                // i+=1;
+                // console.log(i);
+                const list = new List({
+                    name:findItem,
+                    items:defaultsItems
+                });
+                list.save();
+                res.redirect(`/${findItem}`);
+            }else{
+                // console.log(result);
+                res.render('list',{listTitle: findItem,newListItems:result.items});
+            }
+            
+        }
+    })
+    
+});
 
 // app.get("/todolist/about",(req,res)=>{
 //     res.render("about")
